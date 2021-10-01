@@ -1,0 +1,4 @@
+reddit_globals.py
+tvdb_globals.py
+*.pyc
+settings.json
