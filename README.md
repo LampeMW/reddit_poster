@@ -6,7 +6,7 @@
 ### 2 files need to be created:
 
 #### **`reddit_globals.py`**
-```
+```python
 app_id =  ''
 
 app_secret =  ''
@@ -31,7 +31,7 @@ post_end_text =  ''
 ```
 
 #### **`tvdb_globals.py`**
-```
+```python
 tvdb_api_key = ''
 
 tvdb_user_key =  ''
