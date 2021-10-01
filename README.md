@@ -15,7 +15,7 @@ app_uri =  'https://127.0.0.1:65010/authorize_callback'
 
 app_ua =  ''
 
-password =  ""
+password =  ''
 
 username =  ''
 
