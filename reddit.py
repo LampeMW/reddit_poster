@@ -66,15 +66,15 @@ def post_to_reddit(episode_list):
             index = 0
             for name in name_list:
                 if index == 0:
-                    comment = new_submission.reply("**%s**%s" % name, reddit_globals.post_end_text)
+                    comment = new_submission.reply("**%s**%s" % (name, reddit_globals.post_end_text))
                 if index == 1:
-                    comment = new_submission.reply("**%s**%s" % name, reddit_globals.post_end_text)
+                    comment = new_submission.reply("**%s**%s" % (name, reddit_globals.post_end_text))
                 if index == 2:
-                    comment = new_submission.reply("**%s**%s" % name, reddit_globals.post_end_text)
+                    comment = new_submission.reply("**%s**%s" % (name, reddit_globals.post_end_text))
                 if index == 3:
-                    comment = new_submission.reply("**%s**%s" % name, reddit_globals.post_end_text)
+                    comment = new_submission.reply("**%s**%s" % (name, reddit_globals.post_end_text))
                 if index == 4:
-                    comment = new_submission.reply("**%s**%s" % name, reddit_globals.post_end_text)
+                    comment = new_submission.reply("**%s**%s" % (name, reddit_globals.post_end_text))
                 
                 comment.mod.distinguish(how="yes")
                 index += 1
