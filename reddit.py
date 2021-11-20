@@ -89,4 +89,5 @@ def post_to_reddit(episode_list):
                 previous_description = previous_description + "\n\n[Next Episode](%s)" % new_submission.url
                 previous_submission.edit(previous_description)
             previous_submission.mod.sticky(state=True)
+            if not previous_submission.distinguished:
             previous_submission.mod.distinguish(how="yes")
