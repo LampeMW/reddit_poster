@@ -31,7 +31,7 @@ def post_to_reddit(episode_list):
             previous_title = "Season %s Episode %s Discussion Thread - %s" % (previous_ep.season, previous_ep.episode_number, previous_ep.episode_name)
             search_list = r.subreddit(reddit_globals.subreddit).search(previous_title)
             for search_res in search_list:
-                if search_res.author == reddit_globals.username:
+                if search_res.author == reddit_globals.username and search_res.title == previous_title:
                     previous_submission = search_res
 
 
@@ -90,4 +90,4 @@ def post_to_reddit(episode_list):
                 previous_submission.edit(previous_description)
             previous_submission.mod.sticky(state=True)
             if not previous_submission.distinguished:
-            previous_submission.mod.distinguish(how="yes")
+                previous_submission.mod.distinguish(how="yes")
