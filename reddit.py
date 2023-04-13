@@ -35,7 +35,6 @@ def post_to_reddit(episode_list):
             for search_res in search_list:
                 if search_res.author == reddit_globals.username:
                     score = fuzz.ratio(search_res.title, previous_title)
-                    print(score)
                     if not matching_map:
                         matching_map = {'score': score, 'matching_search': search_res}
                     else:
