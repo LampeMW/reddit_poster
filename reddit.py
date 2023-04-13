@@ -2,6 +2,7 @@ import praw
 import reddit_globals
 from datetime import date, datetime, timedelta
 import time
+from fuzzywuzzy import fuzz
 
 def post_to_reddit(episode_list):
     today = date.today()
@@ -30,9 +31,17 @@ def post_to_reddit(episode_list):
             previous_ep = episode_list[episode_list.index(episode) - 1]
             previous_title = "Season %s Episode %s Discussion Thread - %s" % (previous_ep.season, previous_ep.episode_number, previous_ep.episode_name)
             search_list = r.subreddit(reddit_globals.subreddit).search(previous_title)
+            matching_map = {}
             for search_res in search_list:
-                if search_res.author == reddit_globals.username and search_res.title == previous_title:
-                    previous_submission = search_res
+                if search_res.author == reddit_globals.username:
+                    score = fuzz.ratio(search_res.title, previous_title)
+                    print(score)
+                    if not matching_map:
+                        matching_map = {'score': score, 'matching_search': search_res}
+                    else:
+                        if (score >= matching_map['score']):
+                            matching_map = {'score': score, 'matching_search': search_res}
+            previous_submission = matching_map['matching_search']
 
 
             ## Generate new post description with previous episode link
@@ -88,6 +97,6 @@ def post_to_reddit(episode_list):
                 previous_description = previous_submission.selftext
                 previous_description = previous_description + "\n\n[Next Episode](%s)" % new_submission.url
                 previous_submission.edit(previous_description)
-            previous_submission.mod.sticky(state=True)
+            previous_submission.mod.sticky(bottom=True, state=True)
             if not previous_submission.distinguished:
                 previous_submission.mod.distinguish(how="yes")
