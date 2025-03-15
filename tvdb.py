@@ -33,4 +33,6 @@ def tvdb_login():
         ep = Episode(episode)
         episode_list.append(ep)
 
+    episode_list.sort(key=lambda x: x.air_date, reverse=False)
+
     return episode_list
